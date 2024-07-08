@@ -1,8 +1,7 @@
 package com.zipcodewilmington.assessment1.part2;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by leon on 2/16/18.
@@ -33,27 +32,25 @@ public class ArrayUtils {
      */
     public static Object[] removeValue(Object[] objectArray, Object objectToRemove) {
 
-//        ArrayList<Object> arrayList= new ArrayList<>();
-//
-//        for(Object i:objectArray){
-//            if(objectToRemove!=i){
-//                arrayList.add(i);
-//            }
-//        }
-//
-//        Object[] rrrrr = new Object[arrayList.size()];
-//        for(int i=0;i< arrayList.size();i++){
-//            rrrrr[i]= (Object) arrayList.get(i);
-//        }
-//
-//        Object[] result1= new Object[arrayList.size()];
-//        result1 = (Object[]) arrayList.toArray();
-//
-//        Object[] result= arrayList.toArray();
-//        System.out.println(Arrays.toString(result));
-//
-//        return rrrrr;
-        return null;
+        ArrayList<Object> arrayList= new ArrayList<>();
+
+        for(Object i:objectArray){
+            if(objectToRemove!=i){
+                arrayList.add(i);
+            }
+        }
+
+        Object[] rrrrr = new Object[arrayList.size()];
+        for(int i=0;i< arrayList.size();i++){
+            rrrrr[i]= (Object) arrayList.get(i);
+        }
+
+        Object[] result1= new Object[0];
+
+
+        return arrayList.toArray(new Object[0]);
+        //return result1;
+
     }
 
     /**
@@ -74,6 +71,8 @@ public class ArrayUtils {
      * given an array of objects, named `objectArray` return the least frequently occuring object in the array
      */
     public static Object getLeastCommon(Object[] objectArray) {
+
+
         return null;
     }
 
@@ -85,22 +84,30 @@ public class ArrayUtils {
      */
     public static Object[] mergeArrays(Object[] objectArray, Object[] objectArrayToAdd) {
         Object[] result = new Object[objectArray.length+objectArrayToAdd.length];
+
         int length = objectArray.length+objectArrayToAdd.length;//12
-        System.out.println(length);
-
-
+        //System.out.println(length);
 
         for(int i=0;i<=objectArray.length-1;i++){
             result[i]= objectArray[i];
-
         }
         for(int i=objectArray.length;i<=length-1;i++){
             result[i]= objectArrayToAdd[i-objectArray.length];
         }
 
-
-        return result;
-
+        //return result(new Object[0]);
         //return null;
+
+
+
+        List<Object> neww = new ArrayList<>();
+        for(int i=0;i<objectArray.length-1;i++){
+            neww.add(objectArray[i]);
+        }
+        for(int i=objectArray.length;i<=length-1;i++){
+            neww.add(objectArrayToAdd[i- objectArray.length]);
+        }
+        return neww.toArray(new Object[0]);
+
     }
 }
