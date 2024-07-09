@@ -30,26 +30,15 @@ public class ArrayUtils {
      * @return an array with identical content excluding the specified `objectToRemove`
      * Given an array of objects, name `objectArray`, and an object `objectToRemove`, return an array of objects with identical contents excluding `objectToRemove`
      */
-    public static Object[] removeValue(Object[] objectArray, Object objectToRemove) {
+    public static Integer[] removeValue(Integer[] objectArray, Integer objectToRemove) {
 
-        ArrayList<Object> arrayList= new ArrayList<>();
-
-        for(Object i:objectArray){
+        ArrayList<Integer> arrayList= new ArrayList<>();
+        for(Integer i:objectArray){
             if(objectToRemove!=i){
                 arrayList.add(i);
             }
         }
-
-        Object[] rrrrr = new Object[arrayList.size()];
-        for(int i=0;i< arrayList.size();i++){
-            rrrrr[i]= (Object) arrayList.get(i);
-        }
-
-        Object[] result1= new Object[0];
-
-
-        return arrayList.toArray(new Object[0]);
-        //return result1;
+        return arrayList.toArray(new Integer[0]);
 
     }
 
@@ -62,6 +51,24 @@ public class ArrayUtils {
 
 
         return null;
+
+        /*
+                Map<Integer, Integer> countMap = new HashMap<>();
+        int mostFrequent = (int) objectArray[0];
+        int maxCount = 0;
+
+        for (int i = 0; i < objectArray.length; i++) {
+            int num = (int) objectArray[i];
+            int count = countMap.getOrDefault(num, 0) + 1;
+            countMap.put(num, count);
+
+            if (count > maxCount) {
+                mostFrequent = num;
+                maxCount = count;
+            }
+        }
+        return mostFrequent;
+         */
     }
 
 
@@ -74,6 +81,34 @@ public class ArrayUtils {
 
 
         return null;
+
+
+        /*
+        int n = objectArray.length;
+        boolean visited[] = new boolean[n];
+        int maxFreq = 0, minFreq = n;
+        int maxElement = 0, minElement = 0;
+        for (int i = 0; i < n; i++) {
+            if (visited[i] == true)
+                continue;
+            int count = 1;
+            for (int j = i + 1; j < n; j++) {
+                if (objectArray[i] == objectArray[j]) {
+                    visited[j] = true;
+                    count++;
+                }
+            }
+            if (count > maxFreq) {
+                maxElement = objectArray[i];
+                maxFreq = count;
+            }
+            if (count < minFreq) {
+                minElement = objectArray[i];
+                minFreq = count;
+            }
+        }
+        return minElement;
+         */
     }
 
     /**
@@ -83,31 +118,14 @@ public class ArrayUtils {
      * given two arrays `objectArray` and `objectArrayToAdd`, return an array containing all elements in `objectArray` and `objectArrayToAdd`
      */
     public static Object[] mergeArrays(Object[] objectArray, Object[] objectArrayToAdd) {
-        Object[] result = new Object[objectArray.length+objectArrayToAdd.length];
+        int x = objectArray.length;
+        int y = objectArrayToAdd.length;
+        Integer[] mergeArray = new Integer[x + y];
 
-        int length = objectArray.length+objectArrayToAdd.length;//12
         //System.out.println(length);
+        System.arraycopy(objectArray, 0, mergeArray, 0, x);
+        System.arraycopy(objectArrayToAdd, 0, mergeArray, x, y);
 
-        for(int i=0;i<=objectArray.length-1;i++){
-            result[i]= objectArray[i];
-        }
-        for(int i=objectArray.length;i<=length-1;i++){
-            result[i]= objectArrayToAdd[i-objectArray.length];
-        }
-
-        //return result(new Object[0]);
-        //return null;
-
-
-
-        List<Object> neww = new ArrayList<>();
-        for(int i=0;i<objectArray.length-1;i++){
-            neww.add(objectArray[i]);
-        }
-        for(int i=objectArray.length;i<=length-1;i++){
-            neww.add(objectArrayToAdd[i- objectArray.length]);
-        }
-        return neww.toArray(new Object[0]);
-
+        return mergeArray;
     }
 }
